@@ -15,6 +15,7 @@ import { useGameStatus } from "../hooks/useGameStatus";
 import Stage from "./Stage";
 import Display from "./Display";
 import StartButton from "./StartButton";
+import PlaySound from "./Sound";
 
 const Tetris = () => {
   const [dropTime, setDropTime] = useState(null);
@@ -105,7 +106,11 @@ const Tetris = () => {
         <Stage stage={stage} />
         <aside>
           {gameOver ? (
-            <Display gameOver={gameOver} text="Game Over" />
+            <div>
+              <Display gameOver={gameOver} text="Game Over" />
+              <Display text={`Overall Score: ${score}`} />
+              <Display text={`Level Reached: ${level}`} />
+            </div>
           ) : (
               <div>
                 <Display text={`Score: ${score}`} />
@@ -114,6 +119,7 @@ const Tetris = () => {
               </div>
             )}
           <StartButton callback={startGame} />
+          <PlaySound />
         </aside>
       </StyledTetris>
     </StyledTetrisWrapper>
