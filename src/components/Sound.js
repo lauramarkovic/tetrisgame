@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Sound from "react-sound";
 import TetrisTheme from "../TetrisTheme.mp3";
-import { StyledSoundButton } from "./styles/StyledSoundButton";
+import { StyledSoundButton, StyledSoundDiv } from "./styles/StyledSoundButton";
 
 const PlaySound = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   return (
-    <div>
-      <StyledSoundButton onClick={() => setIsPlaying(!isPlaying)}>{!isPlaying ? 'Play Music' : 'Stop Music'}</StyledSoundButton>
+    <StyledSoundDiv>
+      <StyledSoundButton onClick={() => setIsPlaying(!isPlaying)}>{!isPlaying ? <li><i class="fas fa-volume-up"></i> Play Music</li> : <li><i class="fas fa-volume-mute"></i> Stop Music</li>}</StyledSoundButton>
       <Sound
         url={TetrisTheme}
         playStatus={
@@ -15,7 +15,7 @@ const PlaySound = () => {
         }
         playFromPosition={300}
       />
-    </div>
+    </StyledSoundDiv>
   )
 }
 

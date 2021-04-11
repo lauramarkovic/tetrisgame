@@ -12,10 +12,9 @@ import { useStage } from "../hooks/useStage";
 import { useGameStatus } from "../hooks/useGameStatus";
 
 // Components
-import Stage from "./Stage";
-import Display from "./Display";
-import StartButton from "./StartButton";
-import PlaySound from "./Sound";
+import Stage from "../components/Stage";
+import Display from "../components/Display";
+import StartButton from "../components/StartButton";
 
 const Tetris = () => {
   const [dropTime, setDropTime] = useState(null);
@@ -119,7 +118,6 @@ const Tetris = () => {
               </div>
             )}
           <StartButton callback={startGame} />
-          <PlaySound />
         </aside>
       </StyledTetris>
     </StyledTetrisWrapper>
