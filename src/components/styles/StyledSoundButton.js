@@ -8,6 +8,7 @@ export const StyledSoundDiv = styled.div`
 
 export const StyledSoundButton = styled.button`
   margin: 0;
+  padding: 10px;
   min-height: 30px;
   width: 100%;
   border-radius: 20px;
