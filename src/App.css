@@ -1,0 +1,9 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  background: url(img/bg.png) #000;
+  background-size: cover;
+  outline: none;
+  font-family: 'Pixel', sans-serif;
+  color: #fff;
+}

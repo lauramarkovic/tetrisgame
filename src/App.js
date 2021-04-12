@@ -8,6 +8,8 @@ import Register from "./pages/Register";
 import LeaderBoard from "./pages/LeaderBoard";
 import MyScores from "./pages/MyScores";
 
+import "./App.css";
+
 const App = () => (
   <Router>
     <MenuBar />
