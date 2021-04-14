@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import gql from "graphql-tag";
+import { useMutation } from "@apollo/client";
 
-import { createStage, checkCollision } from "../gameHelpers";
+import { createStage, checkCollision } from "../util/gameHelpers";
+
+//User Context
+import { AuthContext } from "../context/auth";
 
 //Styled Components
 import { StyledTetrisWrapper, StyledTetris } from "./styles/StyledTetris";
@@ -17,6 +22,10 @@ import Display from "../components/Display";
 import StartButton from "../components/StartButton";
 
 const Tetris = () => {
+  const { user } = useContext(AuthContext);
+
+  const [createRecord, { data }] = useMutation(CREATE_RECORD);
+
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
 
@@ -61,6 +70,10 @@ const Tetris = () => {
         console.log('GAME OVER!!!');
         setGameOver(true);
         setDropTime(null);
+        if (user) {
+          console.log(score, level);
+          createRecord({ variables: { score, level } });
+        }
       }
       updatePlayerPos({ x: 0, y: 0, collided: true });
     }
@@ -123,5 +136,17 @@ const Tetris = () => {
     </StyledTetrisWrapper>
   )
 };
+
+const CREATE_RECORD = gql`
+  mutation createRecord($score: Int! $level: Int!) {
+    createRecord(score: $score level: $level) {
+      id 
+      score 
+      level
+      username 
+      createdAt
+    }
+  }
+`;
 
 export default Tetris;

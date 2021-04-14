@@ -7,7 +7,7 @@ const PlaySound = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   return (
     <StyledSoundDiv>
-      <StyledSoundButton onClick={() => setIsPlaying(!isPlaying)}>{!isPlaying ? <li><i class="fas fa-volume-up"></i> Play Music</li> : <li><i class="fas fa-volume-mute"></i> Stop Music</li>}</StyledSoundButton>
+      <StyledSoundButton onClick={() => setIsPlaying(!isPlaying)}>{!isPlaying ? <li><i className="fas fa-volume-up"></i> Play Music</li> : <li><i class="fas fa-volume-mute"></i> Stop Music</li>}</StyledSoundButton>
       <Sound
         url={TetrisTheme}
         playStatus={

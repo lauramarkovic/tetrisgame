@@ -14,7 +14,7 @@ export const StyledLoginWrapper = styled.div`
 
 export const StyledLoginContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.8);
-  padding: 40px 60px;
+  padding: 25px 60px;
   border-radius: 5px;
   border: 2px solid #333;
   min-width: 500px;

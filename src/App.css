@@ -6,4 +6,5 @@ body {
   outline: none;
   font-family: 'Pixel', sans-serif;
   color: #fff;
+  overflow: hidden;
 }
