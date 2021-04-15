@@ -24,7 +24,11 @@ import StartButton from "../components/StartButton";
 const Tetris = () => {
   const { user } = useContext(AuthContext);
 
-  const [createRecord, { data }] = useMutation(CREATE_RECORD);
+  const [createRecord] = useMutation(CREATE_RECORD, {
+    update(proxy, result) {
+      console.log(result);
+    }
+  });
 
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
