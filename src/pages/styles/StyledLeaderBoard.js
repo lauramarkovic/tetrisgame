@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledTableTitle = styled.h1`
-  margin: 40px auto 20px;
+  margin: 60px auto 20px;
   font-size: 30px;
   letter-spacing: 1.2rem;
   color: #C4421A;
@@ -58,4 +58,10 @@ export const StyledTableRank = styled.p`
   width: 60px;
   text-align: center;
   border-right: thin solid #333;
+`;
+
+export const StyledNoScores = styled.p`
+  width: 100%;
+  text-align: center;
+  padding: 40px;
 `;

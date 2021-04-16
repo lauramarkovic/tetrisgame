@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledNav = styled.nav`
-  background-color: #111;
+  background-color: rgba(17, 17, 17, 0.8);
   font-family: 'Pixel', sans-serif;
   font-size: 0.8rem;
   top: 0;
@@ -30,6 +30,7 @@ export const StyledLink = styled.a`
   text-decoration: none;
   padding: 7px 15px;
   transition: all 0.3s ease;
+  cursor: pointer;
   &:hover {
     color: #333;
   }

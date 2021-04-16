@@ -8,10 +8,6 @@ import { StyledTableTitle, StyledTableWrapper, StyledTable, StyledTableHeader, S
 const LeaderBoard = () => {
   const { loading, data } = useQuery(FETCH_RECORDS_QUERY);
 
-  if (data) {
-    console.log(data);
-  }
-
   if (loading) return <p>Loading...</p>;
 
   return (
@@ -21,7 +17,7 @@ const LeaderBoard = () => {
         <StyledTableHeader>
           <StyledTableRow>
             <StyledTableRank>Rank</StyledTableRank>
-            <StyledTableElement>User</StyledTableElement>
+            <StyledTableElement>Player</StyledTableElement>
             <StyledTableElement>Score</StyledTableElement>
             <StyledTableElement>Achieved</StyledTableElement>
           </StyledTableRow>

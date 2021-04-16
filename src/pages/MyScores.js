@@ -3,42 +3,55 @@ import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 import moment from "moment";
 
+import { StyledTableTitle, StyledTableWrapper, StyledTable, StyledTableHeader, StyledTableBody, StyledTableRow, StyledTableRank, StyledTableElement, StyledNoScores } from "./styles/StyledLeaderBoard";
+
 //User Context
 import { AuthContext } from "../context/auth";
 
 const MyScores = () => {
   const { user } = useContext(AuthContext);
-  const username = user.username;
+  let username;
+  if (!user) {
+    username = null;
+  } else {
+    username = user.username;
+  }
   const { loading, data } = useQuery(FETCH_USER_RECORDS_QUERY, {
     variables: { username }
   });
 
-  if (data) {
-    console.log(data);
-  }
-
   if (loading) return <p>Loading...</p>;
+  if (!data) return <p>No data...</p>;
 
   return (
-    <div>
-      <h1>My Scores</h1>
-      <div>
-        <div>
-          <p></p>
-          <p>Score</p>
-          <p>Level</p>
-          <p>Achieved</p>
-        </div>
-        {data.getUserRecords && data.getUserRecords.map((record, idx) => (
-          <div key={record.id}>
-            <p>{idx + 1}</p>
-            <p>{record.score}</p>
-            <p>{record.level}</p>
-            <p>{moment(record.createdAt).fromNow(true)} ago</p>
-          </div>
-        ))}
-      </div>
-    </div>
+    <StyledTableWrapper>
+      <StyledTableTitle>My Scores</StyledTableTitle>
+      <StyledTable>
+        <StyledTableHeader>
+          <StyledTableRow>
+            <StyledTableRank>Top</StyledTableRank>
+            <StyledTableElement>Score</StyledTableElement>
+            <StyledTableElement>Level</StyledTableElement>
+            <StyledTableElement>Achieved</StyledTableElement>
+          </StyledTableRow>
+        </StyledTableHeader>
+        <StyledTableBody>
+          {
+            data.getUserRecords.length === 0 && (
+              <StyledNoScores style={{ color: "#fff" }}>You have not achieved any scores yet! :)</StyledNoScores>
+            )
+          }
+          {data.getUserRecords && data.getUserRecords.map((record, idx) => (
+            <StyledTableRow key={record.id}>
+              <StyledTableRank style={{ color: "#C4421A" }}>{idx + 1}</StyledTableRank>
+              <StyledTableElement>{record.score}</StyledTableElement>
+              <StyledTableElement>{record.level}</StyledTableElement>
+              <StyledTableElement>{moment(record.createdAt).fromNow(true)} ago</StyledTableElement>
+            </StyledTableRow>
+          ))}
+        </StyledTableBody>
+      </StyledTable>
+    </StyledTableWrapper>
   )
 };
 

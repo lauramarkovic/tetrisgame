@@ -44,7 +44,7 @@ const MenuBar = () => {
               name="logout"
               onClick={logout}
             >
-              Logout
+              Log Out
           </StyledLink>
           </li>
         </StyledMenuBarUl>
@@ -75,7 +75,7 @@ const MenuBar = () => {
               <StyledLink
                 name="login"
                 className={activeItem === 'login' ? 'active' : ''} onClick={handleItemClick} as={Link} to="/login">
-                Login
+                Log In
           </StyledLink>
             </li>
             <li>
