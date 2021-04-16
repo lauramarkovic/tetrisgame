@@ -3,6 +3,8 @@ import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 import moment from "moment";
 
+import Spinner from "../components/Spinner";
+
 import { StyledTableTitle, StyledTableWrapper, StyledTable, StyledTableHeader, StyledTableBody, StyledTableRow, StyledTableRank, StyledTableElement, StyledNoScores } from "./styles/StyledLeaderBoard";
 
 //User Context
@@ -20,8 +22,8 @@ const MyScores = () => {
     variables: { username }
   });
 
-  if (loading) return <p>Loading...</p>;
-  if (!data) return <p>No data...</p>;
+  if (loading) return <Spinner />;
+  if (!data) return <Spinner />;
 
   return (
     <StyledTableWrapper>

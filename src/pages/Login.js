@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react';
 import { useMutation } from "@apollo/client";
 import gql from "graphql-tag";
 
+import Spinner from "../components/Spinner";
+
 import { AuthContext } from "../context/auth";
 import { useForm } from "../hooks/useForm";
 import { StyledLoginWrapper, StyledLoginContainer, StyledFormControl, FormInput, FormButton, FormText } from "./styles/StyledForm";
@@ -42,7 +44,7 @@ const Login = (props) => {
     });
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Spinner />;
 
   return (
     <StyledLoginWrapper>

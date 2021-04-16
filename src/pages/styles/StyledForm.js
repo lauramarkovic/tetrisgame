@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StyledLoginWrapper = styled.div`
-  box-sizing: border-box;
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -25,7 +24,9 @@ export const StyledLoginContainer = styled.div`
   & h1 {
     text-align: center;
     margin-bottom: 50px;
-    font-size: 20px;
+    font-size: 24px;
+    letter-spacing: 0.3rem;
+    color: #C4421A;
   }
 
   & a {
@@ -102,6 +103,10 @@ export const FormButton = styled.button`
 
   &:active {
     transform: scale(0.98);
+  }
+
+  &:hover {
+    background-color: #005a5a;
   }
 `;
 

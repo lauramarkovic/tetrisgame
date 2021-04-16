@@ -3,12 +3,14 @@ import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 import moment from "moment";
 
+import Spinner from "../components/Spinner";
+
 import { StyledTableTitle, StyledTableWrapper, StyledTable, StyledTableHeader, StyledTableBody, StyledTableRow, StyledTableElement, StyledTableRank } from "./styles/StyledLeaderBoard";
 
 const LeaderBoard = () => {
   const { loading, data } = useQuery(FETCH_RECORDS_QUERY);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Spinner />;
 
   return (
     <StyledTableWrapper>
