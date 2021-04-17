@@ -2,13 +2,12 @@ import React, { useContext, useState } from "react";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
 
+//Utility
 import { createStage, checkCollision } from "../util/gameHelpers";
+import { FETCH_RECORDS_QUERY } from "../util/graphql";
 
 //User Context
 import { AuthContext } from "../context/auth";
-
-//Styled Components
-import { StyledTetrisWrapper, StyledTetris } from "./styles/StyledTetris";
 
 //Custom Hooks
 import { useInterval } from "../hooks/useInterval";
@@ -21,12 +20,24 @@ import Stage from "../components/Stage";
 import Display from "../components/Display";
 import StartButton from "../components/StartButton";
 
+//Styled Components
+import { StyledTetrisWrapper, StyledTetris } from "./styles/StyledTetris";
+
 const Tetris = () => {
   const { user } = useContext(AuthContext);
 
   const [createRecord] = useMutation(CREATE_RECORD, {
     update(proxy, result) {
-      console.log(result);
+      const data = proxy.readQuery({
+        query: FETCH_RECORDS_QUERY
+      });
+
+      proxy.writeQuery({
+        query: FETCH_RECORDS_QUERY,
+        data: {
+          getRecords: [result.data.createRecord, ...data.getRecords].sort((a, b) => (a.score > b.score) ? -1 : 1).slice(0, 10)
+        }
+      });
     }
   });
 

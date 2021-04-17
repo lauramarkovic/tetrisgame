@@ -9,6 +9,10 @@ const MenuBar = () => {
   const { user, logout } = useContext(AuthContext);
   const [activeItem, setActiveItem] = useState('home');
 
+  // const path = window.location.pathname;
+  // const myPath = path.slice(1);
+  // console.log(myPath);
+
   const handleItemClick = (e) => setActiveItem(e.target.name);
 
   const menuBar = user ? (

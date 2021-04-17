@@ -96,12 +96,12 @@ const Login = (props) => {
 };
 
 const LOGIN_USER = gql`
-  mutation login(
-    $username: String!
-    $password: String!
+      mutation login(
+        $username: String!
+        $password: String!
   ) {
-    login(username: $username password: $password) {
-      id username token email createdAt
+        login(username: $username password: $password) {
+        id username token email createdAt
     }
   }
 `;

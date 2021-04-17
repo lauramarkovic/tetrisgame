@@ -1,9 +1,9 @@
 import React from 'react';
 import { useQuery } from "@apollo/client";
-import gql from "graphql-tag";
 import moment from "moment";
 
 import Spinner from "../components/Spinner";
+import { FETCH_RECORDS_QUERY } from "../util/graphql";
 
 import { StyledTableTitle, StyledTableWrapper, StyledTable, StyledTableHeader, StyledTableBody, StyledTableRow, StyledTableElement, StyledTableRank } from "./styles/StyledLeaderBoard";
 
@@ -38,17 +38,5 @@ const LeaderBoard = () => {
     </StyledTableWrapper>
   )
 };
-
-const FETCH_RECORDS_QUERY = gql`
-  {
-    getRecords {
-      id 
-      score 
-      level 
-      username 
-      createdAt
-    }
-  }
-`;
 
 export default LeaderBoard;

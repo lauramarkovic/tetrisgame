@@ -10,6 +10,7 @@ import MyScores from "./pages/MyScores";
 
 import { AuthProvider } from "./context/auth";
 import AuthRoute from "./util/AuthRoute";
+import MyScoresRoute from "./util/MyScoresRoute";
 
 import "./App.css";
 
@@ -19,7 +20,7 @@ const App = () => (
       <MenuBar />
       <Route exact path="/" component={Tetris} />
       <Route path="/leaderboard" component={LeaderBoard} />
-      <Route path="/myscores" component={MyScores} />
+      <MyScoresRoute path="/myscores" component={MyScores} />
       <AuthRoute path="/login" component={Login} />
       <AuthRoute path="/register" component={Register} />
     </Router>
