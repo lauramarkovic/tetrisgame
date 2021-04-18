@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Alert from '@material-ui/lab/Alert';
 
 export const StyledTetrisWrapper = styled.div`
   width: 100vw;
@@ -22,4 +23,14 @@ export const StyledTetris = styled.div`
     display: block;
     padding: 0 20px;
   }
+`;
+
+export const StyledAlert = styled(Alert)`
+  left: '0',
+  pointer-events: 'none',
+  position: 'fixed',
+  top: 0,
+  width: '100%',
+  z-index: '1500',
+  font-family: 'sans-serif'
 `;

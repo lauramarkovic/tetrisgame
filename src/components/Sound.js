@@ -14,6 +14,7 @@ const PlaySound = () => {
           isPlaying ? Sound.status.PLAYING : Sound.status.STOPPED
         }
         playFromPosition={300}
+        loop={true}
       />
     </StyledSoundDiv>
   )

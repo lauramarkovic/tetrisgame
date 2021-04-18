@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
+import Fade from '@material-ui/core/Fade';
 
 //Utility
 import { createStage, checkCollision } from "../util/gameHelpers";
@@ -21,16 +22,25 @@ import Display from "../components/Display";
 import StartButton from "../components/StartButton";
 
 //Styled Components
-import { StyledTetrisWrapper, StyledTetris } from "./styles/StyledTetris";
+import { StyledTetrisWrapper, StyledTetris, StyledAlert } from "./styles/StyledTetris";
 
 const Tetris = () => {
   const { user } = useContext(AuthContext);
+  const [flash, setFlash] = useState(null);
 
   const [createRecord] = useMutation(CREATE_RECORD, {
     update(proxy, result) {
       const data = proxy.readQuery({
         query: FETCH_RECORDS_QUERY
       });
+
+      if (result.data.createRecord.score > data.getRecords[0].score) {
+        setFlash(true);
+
+        setTimeout(() => {
+          setFlash(null);
+        }, 5000);
+      };
 
       proxy.writeQuery({
         query: FETCH_RECORDS_QUERY,
@@ -49,8 +59,6 @@ const Tetris = () => {
   const [score, setScore, rows, setRows, level, setLevel] = useGameStatus(
     rowsCleared
   );
-
-  console.log('re-render');
 
   const movePlayer = dir => {
     if (!checkCollision(player, stage, { x: dir, y: 0 })) {
@@ -86,7 +94,6 @@ const Tetris = () => {
         setGameOver(true);
         setDropTime(null);
         if (user) {
-          console.log(score, level);
           createRecord({ variables: { score, level } });
         }
       }
@@ -129,6 +136,16 @@ const Tetris = () => {
 
   return (
     <StyledTetrisWrapper role="button" tabIndex="0" onKeyDown={e => move(e)} onKeyUp={keyUp}>
+      {
+        flash
+          ? (
+            <Fade in={flash} timeout={{ enter: 300, exit: 1000 }}>
+              <StyledAlert severity="success">
+                Congratulations, you've beaten the highest score! :)
+              </StyledAlert>
+            </Fade>)
+          : null
+      }
       <StyledTetris>
         <Stage stage={stage} />
         <aside>
