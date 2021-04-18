@@ -11,3 +11,14 @@ export const FETCH_RECORDS_QUERY = gql`
     }
   }
 `;
+
+export const FETCH_USER_RECORDS_QUERY = gql`
+  query getUserRecords($username: String!) {
+    getUserRecords(username: $username) {
+      id 
+      score 
+      level 
+      createdAt
+    }
+  }
+`;

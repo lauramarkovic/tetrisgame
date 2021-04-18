@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { useQuery } from "@apollo/client";
-import gql from "graphql-tag";
 import moment from "moment";
 
 import Spinner from "../components/Spinner";
 
+import { FETCH_USER_RECORDS_QUERY } from "../util/graphql";
 import { StyledTableTitle, StyledTableWrapper, StyledTable, StyledTableHeader, StyledTableBody, StyledTableRow, StyledTableRank, StyledTableElement, StyledNoScores } from "./styles/StyledLeaderBoard";
 
 //User Context
@@ -56,16 +56,5 @@ const MyScores = () => {
     </StyledTableWrapper>
   )
 };
-
-const FETCH_USER_RECORDS_QUERY = gql`
-  query getUserRecords($username: String!) {
-    getUserRecords(username: $username) {
-      id 
-      score 
-      level 
-      createdAt
-    }
-  }
-`;
 
 export default MyScores;

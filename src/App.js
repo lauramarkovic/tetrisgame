@@ -19,10 +19,10 @@ const App = () => (
     <Router>
       <MenuBar />
       <Route exact path="/" component={Tetris} />
-      <Route path="/leaderboard" component={LeaderBoard} />
-      <MyScoresRoute path="/myscores" component={MyScores} />
-      <AuthRoute path="/login" component={Login} />
-      <AuthRoute path="/register" component={Register} />
+      <Route exact path="/leaderboard" component={LeaderBoard} />
+      <MyScoresRoute exact path="/myscores" component={MyScores} />
+      <AuthRoute exact path="/login" component={Login} />
+      <AuthRoute exact path="/register" component={Register} />
     </Router>
   </AuthProvider>
 );

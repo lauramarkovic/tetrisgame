@@ -5,7 +5,7 @@ import Fade from '@material-ui/core/Fade';
 
 //Utility
 import { createStage, checkCollision } from "../util/gameHelpers";
-import { FETCH_RECORDS_QUERY } from "../util/graphql";
+import { FETCH_RECORDS_QUERY, FETCH_USER_RECORDS_QUERY } from "../util/graphql";
 
 //User Context
 import { AuthContext } from "../context/auth";
@@ -28,6 +28,13 @@ const Tetris = () => {
   const { user } = useContext(AuthContext);
   const [flash, setFlash] = useState(null);
 
+  let username;
+  if (!user) {
+    username = null;
+  } else {
+    username = user.username;
+  }
+
   const [createRecord] = useMutation(CREATE_RECORD, {
     update(proxy, result) {
       const data = proxy.readQuery({
@@ -47,6 +54,19 @@ const Tetris = () => {
         data: {
           getRecords: [result.data.createRecord, ...data.getRecords].sort((a, b) => (a.score > b.score) ? -1 : 1).slice(0, 10)
         }
+      });
+
+      const { getUserRecords } = proxy.readQuery({
+        query: FETCH_USER_RECORDS_QUERY,
+        variables: { username }
+      });
+
+      proxy.writeQuery({
+        query: FETCH_USER_RECORDS_QUERY,
+        data: {
+          getUserRecords: [result.data.createRecord, ...getUserRecords].sort((a, b) => (a.score > b.score) ? -1 : 1)
+        },
+        variables: { username }
       });
     }
   });
